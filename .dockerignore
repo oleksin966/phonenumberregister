@@ -1,0 +1,13 @@
+
+**/bin/
+**/obj/
+
+.vs/
+ 
+.env
+.env.sample
+
+.gitignore
+README.md
+*.http
+.git

@@ -1,0 +1,40 @@
+services:
+
+  # ── Data Base PostgreSQL ───────────────────────────────
+  db:
+    image: postgres:15
+    container_name: phone_register_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "${DB_PORT}:${DB_PORT}"          
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ── ASP.NET Core application ──────────────────────────────
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: phone_register_api
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy   # wait until the database is ready
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:5000
+      ConnectionStrings__DefaultConnection: Host=db;Port=${DB_PORT};Database=${DB_NAME};Username=${DB_USER};Password=${DB_PASSWORD}
+    ports:
+      - "5000:5000"
+
+volumes:
+  pg_data:
