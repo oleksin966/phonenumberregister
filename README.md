@@ -1,6 +1,6 @@
 # PhoneNumberRegister
 
-REST API for registering phone numbers. Accepts a number in any format, normalizes it to E.164 and saves it to PostgreSQL.
+REST API for registering only American phone numbers. Accepts a number in any format, normalizes it to E.164 and saves it to PostgreSQL.
 
 ---
 
