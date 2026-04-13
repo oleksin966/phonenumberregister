@@ -40,7 +40,7 @@ Content-Type: application/json
 POST http://localhost:5000/check_number
 
 {
-  "phoneNumber": "+380991234567"
+  "phoneNumber": "+12123457789"
 }
 ```
 
@@ -59,7 +59,7 @@ Response:
 POST http://localhost:5000/check_number
 
 {
-  "phoneNumber": "+380991234567"
+  "phoneNumber": "+12123457789"
 }
 ```
 
@@ -112,13 +112,13 @@ Response:
 
 ## Accepted Phone Number Formats
 
-All formats are normalized to E.164 before saving.
+All formats with start (+1) are normalized to E.164 before saving.
 
 | Input                  | Saved as        |
 |------------------------|-----------------|
 | `+1 (650) 253-0000`    | `+16502530000`  |
-| `6502530000`           | `+16502530000`  |
-| `(650) 253-0000`       | `+16502530000`  |
-| `650-253-0000`         | `+16502530000`  |
+| `+1 6502530000`           | `+16502530000`  |
+| `+1 (650) 253-0000`       | `+16502530000`  |
+| `+1 650-253-0000`         | `+16502530000`  |
 | `+1 650 253 0000`      | `+16502530000`  |
 | `1 650 253 0000`       | `+16502530000`  |
