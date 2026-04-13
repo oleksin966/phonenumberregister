@@ -25,11 +25,6 @@ Swagger UI: `http://localhost:5000/swagger`
 
 Checks if a phone number exists and adds it if not found.
 
-**Headers:**
-```
-Content-Type: application/json
-```
-
 ---
 
 ## Test Requests
